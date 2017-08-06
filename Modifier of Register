@@ -1,0 +1,51 @@
+/* Register anahtar kelimesi yerel değişkeni tanımlamak için kullanılır.*/
+
+/* Yerel değişken RAM içinde kayıtta saklanır.*/
+
+/* Değişken kayıtta saklanırken, Maksimum değişken boyutu = Kayıt Maksimum Boyutu*/
+
+/*Bu genellikle daha hızlı erişim için kullanılır.*/
+
+/*Programda iki değişken olan num1, num2'yi ilan ettik. Bu iki değişken RAM'de saklanır.
+
+/*Kayıt değişkeninde saklanan başka bir değişken bildirilir.
+Kayıt değişkenleri mikroişlemcinin kaydında saklanır.
+Bellek erişimi diğer değişkenlerden daha hızlı olur.
+Daha fazla kayıt değişkeni bildirmeye çalışırsak,değişkenleri,mikroişlemcinin belleği 
+sabit ve sınırlı olduğu gibi Otomatik depolama değişkenleri gibi davranabilir.*/
+
+/*Neden Kayıt Değişkene ihtiyacımız var?
+C Programında herhangi bir değişkeni ilan ettiğimizde hafıza, belirli hafıza yerine rasgele tahsis edilecektir.
+Bu hafıza yerini takip etmeliyiz. Ampersand işleci / Adres Operatörünü (&) kullanarak bu bellek konumundaki değere erişmemiz gerekiyor.
+Aynı değişkeni kayıt hafızasında saklarsak, o bellek konumuna doğrudan Adres operatörü kullanmadan erişebiliriz.
+Kayıt değişkenine normal değişkenden daha hızlı erişilir, böylece işlem ve program yürütme artar. Genellikle Sayaç olarak kayıt değişkenini kullanırız.*/
+
+/*Not: Diziler, yapılar veya işaretçiler için geçerli değildir.*/
+
+/*
+Anahtar kelime: kayıt
+Depolama Yeri: CPU Kayıt
+Başlangıç Değeri: Çöp
+Ömrü: Değişken ilan edilen bloğa lokal.
+Kapsam: blok Yerel.
+*/
+
+#include<stdio.h>
+
+int main()
+{
+int num1,num2;
+register int sum;
+
+printf("\nEnter the Number 1 : ");
+scanf("%d",&num1);
+
+printf("\nEnter the Number 2 : ");
+scanf("%d",&num2);
+
+sum = num1 + num2;
+
+printf("\nSum of Numbers : %d",sum);
+
+return(0);
+}
