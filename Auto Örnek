@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <stdlib.h>
+/*AUTO KULLANIMI*/
+/* Two variables are declared in different blocks , so they are treated as different variables */
+/*İki değişken farklı bloklarda tanımlanmış olup,farklı değişkenlermiş gibi değerlendiriliyor*/
+/*Ve bu aynı değişken farklı bloklarda biribirinden habersizdir.*/
+
+void main() 
+{
+	auto num=20;
+	{
+		auto num=60;
+		printf("Num:%d\n",num);
+	}
+	printf("Num:%d",num);
+}
