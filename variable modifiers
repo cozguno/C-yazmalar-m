@@ -1,0 +1,68 @@
+#include <stdio.h>
+/**/
+
+void useLocal (void);/*fonksiyon prototipi*/
+void useStaticLocal(void);/*fonksiyon prototipi*/
+void useGlobal(void);/*fonksiyon prototipi*/
+
+int x=1;/*Global değişken*/
+
+/*main(ana) fonksiyon çalışmaya başlıyor.*/
+int main(void) 
+{
+	int x=5;/*main fonksiyonunun yerel değişkeni*/
+	
+	printf("YEREL X iN DIS KAPSAMDAKi DEGERi: %d\n",x);
+	{
+		/*yeni alan oluşturuldu */
+		int x=7;/*yeni alan içerisindeki yerel değişken*/
+		printf("YEREL X iN iC KAPSAMDAKi DEGERi: %d\n",x);
+	}/*yeni alan bitişi*/
+	
+	printf("YEREL X iN DIS KAPSAMDAKi DEGERi: %d\n",x);
+	
+	useLocal();/*useLocal otomatik yerel x e sahip*/
+	useStaticLocal();/*useStaticLocal statik yerel x e sahip*/
+	useGlobal();/*useGlobal global x i kullanır*/
+	useLocal();/*useLocal otomatik yerel x i tekrar başlatır*/
+	useStaticLocal();/*Statik yerel x önceki değerini korur*/
+	useGlobal();/*Global x değişkeni değerini korur*/
+	
+	printf("\nmain deki x YEREL degeri %d\n",x);
+	return 0;/*başarılı sonlardırmayı belirtir.*/
+	}/*main fonksiyonunun sonu*/
+	
+	/*UseLocal, her çağrı sırasında x yerel değişkenini yeniden canlandırır */
+	
+	void useLocal(void)
+	{
+		int x = 25;/*her başlatıldığında UseLocal çağırılır*/
+		
+		printf("\nUseLocal alanIndaki YEREL x degeri useLocal girildikten sonra % d oldu\n",x);
+		x++;
+		printf("yerel x in useLocal den cikmadan onceki useLocal icindeki degeri:%d\n",x);
+		
+		}/*useLocal fonskiyonunun sonu*/
+		
+		/*UseStaticLocal, statik yerel değişkeni x'i 
+		yalnızca işlev çağrıldığında ilk kez başlatır; 
+		x değeri bu işlev çağrıları arasında kaydedilir*/
+		
+	void useStaticLocal(void)
+		{
+			/*UseStaticLocal ilk kez başlatıldı*/
+			static int x = 50;
+			
+			printf("\nYerel static x, useStaticLocal girildiginde %d oluyor.\n",x);
+			x++;
+			printf("Yerel statik x, useStaticLocal cikisinnda %d oluyor\n",x);
+		}/*useStaticLocal fonksiyonun sonu*/
+		
+		/*UseGlobal işlevi, her çağrı sırasında x genel değişkenini değiştirir*/
+		
+		void useGlobal(void)
+		{
+			printf("\nGlobal x, useGlobal girerken %d oluyor\n",x);
+			x*=10;
+			printf("Global x, useGlobal'den cikarken %d oluyor",x);
+		}/*useGlobal fonksiyonunun sonu*/
